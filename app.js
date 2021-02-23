@@ -4,18 +4,6 @@ let time = moment().format('MMMM Do YYYY')
 document.getElementById('currentDay').append(time)
 
 
-let elem = {
-  '9': [],
-  '10': [],
-  '11': [],
-  '12': [],
-  '13': [],
-  '14': [],
-  '15': [],
-  '16': [],
-  '17': []
-}
-
 // time-block color change based on time
 // function to change the background color of text area based on hour of day
 var colorChange = () => {
@@ -46,21 +34,26 @@ colorChange()
 
 // localStorage of time-block content
 
+let elem = []
 
-
-// let entries = JSON.parse(localStorage.getItem('events')) || []
+let entries = JSON.parse(localStorage.getItem('events')) || []
+entries.forEach(elem => {
+  elem.push(input)
+  entry.value = elem
+})
 // let entries = ['','','','','','','','','']
 
-// document.addEventListener('click', event => {
-//     if(event.target.classList.contains('saveBtn')) {
+document.addEventListener('click', event => {
+    if(event.target.classList.contains('saveBtn')) {
       
-//       let entry = document.getElementsByClassName('description')
-//       for (let i=0; i<entry.length; i++) {
-//         let input = document.getElementsByClassName('description').value
-//         entries.splice(i,1,input)
-//       }
-//       console.log(entries)
+      let entry = document.getElementsByClassName('description')
+      for (let i=0; i<entry.length; i++) {
+        let input = document.getElementsByClassName('description').value
+        elem.push(input)
+        localStorage.setItem('events', JSON.stringify(elem))
+        entry.value = elem
+      }
 
-//     }
-// })
+    }
+})
 
