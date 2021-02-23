@@ -4,7 +4,6 @@ let time = moment().format('MMMM Do YYYY')
 document.getElementById('currentDay').append(time)
 
 
-// time-block color change based on time
 let elem = {
   '9': [],
   '10': [],
@@ -17,6 +16,7 @@ let elem = {
   '17': []
 }
 
+// time-block color change based on time
 // function to change the background color of text area based on hour of day
 var colorChange = () => {
   let currentHour = moment().get('hour')
