@@ -35,24 +35,23 @@ colorChange()
 // localStorage of time-block content
 
 let elem = []
+let textBox = document.getElementsByClassName('description')
+let entry = textBox.value
+
 
 let entries = JSON.parse(localStorage.getItem('events')) || []
-entries.forEach(elem => {
-  elem.push(input)
-  entry.value = elem
-})
+for (let i = 0; i < textBox.length; i++) {
+  textBox[i].value = localStorage.getItem('events')
+}
 
 document.addEventListener('click', event => {
     if(event.target.classList.contains('saveBtn')) {
       
-      let entry = document.getElementsByClassName('description')
-      for (let i=0; i<entry.length; i++) {
-        let input = document.getElementsByClassName('description').value
-        elem.push(input)
+      for (let i=0; i<textBox.length; i++) {
+        let entryElem = textBox[i].value
+        elem.push(entryElem)
         localStorage.setItem('events', JSON.stringify(elem))
-        entry.value = elem
       }
 
     }
 })
-
