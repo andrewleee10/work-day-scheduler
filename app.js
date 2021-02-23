@@ -41,7 +41,6 @@ entries.forEach(elem => {
   elem.push(input)
   entry.value = elem
 })
-// let entries = ['','','','','','','','','']
 
 document.addEventListener('click', event => {
     if(event.target.classList.contains('saveBtn')) {
