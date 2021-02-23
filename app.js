@@ -3,30 +3,64 @@
 let time = moment().format('MMMM Do YYYY')
 document.getElementById('currentDay').append(time)
 
-// console.log(moment().set('hour',9))
+
+// time-block color change based on time
+let elem = {
+  '9': [],
+  '10': [],
+  '11': [],
+  '12': [],
+  '13': [],
+  '14': [],
+  '15': [],
+  '16': [],
+  '17': []
+}
+
+// function to change the background color of text area based on hour of day
+var colorChange = () => {
+  let currentHour = moment().get('hour')
+  console.log(currentHour)
+  
+  let hourText = document.getElementsByClassName('hour')
+  let textColor = document.getElementsByClassName('description')
+  for(let i=0; i<hourText.length; i++) {
+    hourVal = parseInt(hourText[i].textContent)
+    if(hourVal < 6) {
+      hourVal = hourVal + 12
+    }
+    if (hourVal === currentHour) {
+      textColor[i].classList.add('present')
+    } else if (hourVal > currentHour) {
+      textColor[i].classList.add('future')
+    } else {
+      textColor[i].classList.add('past')
+    }
+  }
+}
+
+colorChange()
+
+
+
 
 // localStorage of time-block content
-// let entry = JSON.parse(localStorage.getItem('events')) || []
-// entry.forEach(entries => {
-//   let eventElem = document.getElementsByClassName('description')
-//   eventElem.textContent = document.getElementsByClassName('description').textContent
 
-  // document.getElementsByClassName('description').append(eventElem)
-// })
 
-document.getElementsByClassName('description').value = localStorage.getItem('events')
 
-document.addEventListener('click', event => {
-    if(event.target.classList.contains('saveBtn')) {
+// let entries = JSON.parse(localStorage.getItem('events')) || []
+// let entries = ['','','','','','','','','']
+
+// document.addEventListener('click', event => {
+//     if(event.target.classList.contains('saveBtn')) {
       
-      // let entries = document.getElementsByClassName('description')
-      // for(let i=0; i<entries.length; i++) {
-      //   let entryElem = ''
-      //   entryElem += (entries[i].value)
-      //   console.log(entryElem) 
-      //   localStorage.setItem('events', entryElem)
-      // }
+//       let entry = document.getElementsByClassName('description')
+//       for (let i=0; i<entry.length; i++) {
+//         let input = document.getElementsByClassName('description').value
+//         entries.splice(i,1,input)
+//       }
+//       console.log(entries)
 
-    }
-})
+//     }
+// })
 
